@@ -1,5 +1,5 @@
 package com.assignment.cred.models
 
-data class Category(
+data class CategoryResponse(
     val data: List<Data>
 )
