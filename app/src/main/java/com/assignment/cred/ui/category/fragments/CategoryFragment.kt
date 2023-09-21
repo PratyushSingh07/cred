@@ -71,20 +71,19 @@ class CategoryFragment : Fragment() {
                     when (it) {
                         is CategoryUiState.CategoryList -> {
                             Log.d("CATEGORY", it.list.toString())
-                            val childItems = ArrayList<ChildItem>()
-                            it.list.forEach {
-                                childItems.add(
-                                    ChildItem(
-                                        it.display_data.name,
-                                        it.display_data.description
-                                    )
-                                )
+                            val groupedChildItems = it.list.groupBy { categoryItem ->
+                                categoryItem.title
                             }
-                            parentList = listOf(
-                                ParentItem("TITLE 1", childItems),
-                                ParentItem("TITLE 2", childItems),
-                                ParentItem("TITLE 3", childItems)
-                            )
+                            val parentItems = groupedChildItems.map { (title, items) ->
+                                val childItems = items.map { categoryItem ->
+                                    ChildItem(
+                                        categoryItem.item.display_data.name,
+                                        categoryItem.item.display_data.description
+                                    )
+                                }
+                                ParentItem(title, childItems)
+                            }
+                            parentList = parentItems
                             parentAdapter.updateData(parentList)
                         }
                         CategoryUiState.Error -> {
