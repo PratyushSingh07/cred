@@ -6,7 +6,7 @@
     android:layout_marginHorizontal="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="#121212"
+        android:background="#0D0D0D"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -25,6 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Language"
+                android:fontFamily="@font/poppins_medium"
                 android:textColor="#3D3D3D"
                 android:textSize="16sp"
                 android:textStyle="bold"
