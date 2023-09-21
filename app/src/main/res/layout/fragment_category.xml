@@ -26,7 +26,7 @@
                 android:textColor="#3D3D3D"
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="explore"/>
+                android:text="@string/explore"/>
 
         </LinearLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="CRED"
+                android:text="@string/cred"
                 android:textColor="@color/white"
                 android:textSize="26sp"
                 android:textStyle="bold"

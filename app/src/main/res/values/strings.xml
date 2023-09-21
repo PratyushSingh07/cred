@@ -2,4 +2,12 @@
     <string name="app_name">cred</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cred">CRED</string>
+    <string name="explore">explore</string>
+    <string name="placeholder_category">Placeholder Category</string>
+    <string name="placeholder_subtitle">placeholder subtitle</string>
+    <string name="go_to_category">Go to Category</string>
+    <string name="grow_business_3x_faster">grow business 3x faster</string>
+    <string name="mint">mint</string>
+    <string name="language">Language</string>
 </resources>

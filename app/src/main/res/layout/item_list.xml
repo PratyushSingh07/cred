@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"
-            android:text="grow business 3x faster"
+            android:text="@string/grow_business_3x_faster"
             android:textSize="12sp"
             android:textStyle="bold" />
 

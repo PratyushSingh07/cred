@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -23,6 +24,7 @@ import com.assignment.cred.models.ChildItem
 import com.assignment.cred.models.ParentItem
 import com.assignment.cred.utils.CategoryUiState
 import com.assignment.cred.ui.category.viewmodels.CategoryViewModel
+import com.assignment.cred.utils.Network
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -59,6 +61,11 @@ class CategoryFragment : Fragment() {
                 findNavController().navigate(R.id.action_categoryFragment_to_homeFragment, bundle)
             }
             adapter = parentAdapter
+        }
+
+        if(!Network.isConnected(requireContext())) {
+            Toast.makeText(requireContext(),"No Internet Connection",Toast.LENGTH_SHORT).show()
+            return binding.root
         }
 
         binding.switch1.setOnCheckedChangeListener { _, isChecked ->
