@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#121212"
     tools:context=".ui.home.HomeFragment">
 
@@ -32,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Placeholder Category"
             android:textColor="@color/white"
-            android:fontFamily="@font/dmserifdisplay_regular"
+            android:fontFamily="@font/poppins_bold"
             android:textStyle="bold"
             android:textSize="30sp"/>
 
@@ -40,10 +41,10 @@
             android:id="@+id/tvCategorySubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grow Savings 3x faster"
+            android:text="placeholder subtitle"
             android:textColor="@color/white"
             android:fontFamily="@font/dmserifdisplay_regular"
-            android:textSize="20sp"/>
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
@@ -58,8 +59,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Go to Category"
+            app:iconGravity="textEnd"
+            android:textAllCaps="false"
             android:padding="16dp"
-            android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+            android:fontFamily="@font/poppins_medium"
+            app:icon="@drawable/ic_baseline_arrow_forward_24"
+            app:iconTint="@color/black"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"/>
 
