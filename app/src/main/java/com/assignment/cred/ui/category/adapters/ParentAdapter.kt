@@ -29,7 +29,7 @@ class ParentAdapter(
         val parentItem = parentList[position]
         holder.titleTv.text = parentItem.title
 
-        var spanCount = if (layoutManager?.spanCount == 1) {
+        var spanCount = if (layoutManager?.spanCount == 3) {
             4
         } else {
             1
