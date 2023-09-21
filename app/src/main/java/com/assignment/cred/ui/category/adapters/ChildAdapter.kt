@@ -12,6 +12,8 @@ class ChildAdapter(
     private val layoutManager: GridLayoutManager? = null
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    var onItemClick: ((ChildItem) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ViewType.DETAILED.ordinal -> {
@@ -52,6 +54,9 @@ class ChildAdapter(
 
         fun bind(item: ChildItem) {
             binding.tvCategoryNameGrid.text = item.title
+            binding.cvGrid.setOnClickListener {
+                onItemClick?.invoke(item)
+            }
         }
     }
 
@@ -61,6 +66,9 @@ class ChildAdapter(
         fun bind(item: ChildItem) {
             binding.tvCategoryName.text = item.title
             binding.tvCategorySubtitleName.text = item.subtitle
+            binding.cvList.setOnClickListener {
+                onItemClick?.invoke(item)
+            }
         }
     }
 }

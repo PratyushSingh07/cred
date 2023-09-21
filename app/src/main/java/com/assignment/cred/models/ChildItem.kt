@@ -1,3 +1,7 @@
 package com.assignment.cred.models
 
-data class ChildItem(val title: String, val subtitle: String)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class ChildItem(val title: String, val subtitle: String) : Parcelable

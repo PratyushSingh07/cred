@@ -1,18 +1,22 @@
 package com.assignment.cred.ui.category.fragments
 
+import ChildAdapter
 import ParentAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.BundleCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.assignment.cred.R
 import com.assignment.cred.databinding.FragmentCategoryBinding
 import com.assignment.cred.models.ChildItem
 import com.assignment.cred.models.ParentItem
@@ -45,6 +49,12 @@ class CategoryFragment : Fragment() {
         binding.rvCategory.apply {
             layoutManager = LinearLayoutManager(context)
             parentAdapter = ParentAdapter(parentList, mLayoutManager)
+            parentAdapter.onParentItemClick = {
+                val bundle = Bundle()
+                bundle.putParcelable("CHILD_ITEM",it)
+//                val action = CategoryFragmentDirections.actionCategoryFragmentToHomeFragment(it)
+                findNavController().navigate(R.id.action_categoryFragment_to_homeFragment,bundle)
+            }
             adapter = parentAdapter
         }
 

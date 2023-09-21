@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:id="@+id/llText"
-        android:layout_margin="30dp"
+        android:layout_margin="20dp"
         android:layout_below="@id/ivCategory"
         android:orientation="vertical"
         android:layout_width="match_parent"

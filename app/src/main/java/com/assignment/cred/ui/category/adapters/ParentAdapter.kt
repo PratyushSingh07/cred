@@ -1,14 +1,18 @@
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.assignment.cred.databinding.ItemParentBinding
+import com.assignment.cred.models.ChildItem
 import com.assignment.cred.models.ParentItem
 
 class ParentAdapter(
     private var parentList: List<ParentItem>,
     private val layoutManager: GridLayoutManager? = null
 ) : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
+
+    var onParentItemClick: ((ChildItem) -> Unit)? = null
 
     inner class ParentViewHolder(private val binding: ItemParentBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -26,6 +30,10 @@ class ParentAdapter(
                 parentItem.mList,
                 layoutManager
             )
+            adapter.onItemClick = {
+                onParentItemClick?.invoke(it)
+                println("PARENT_CLICKED ${it.title}")
+            }
             binding.langRecyclerView.adapter = adapter
         }
     }
