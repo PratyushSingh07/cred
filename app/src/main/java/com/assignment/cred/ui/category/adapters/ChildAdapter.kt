@@ -1,42 +1,39 @@
-package com.assignment.cred.ui.category.adapters
-
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.assignment.cred.R
+import com.assignment.cred.databinding.ItemGridBinding
+import com.assignment.cred.databinding.ItemListBinding
 import com.assignment.cred.models.ChildItem
 import com.assignment.cred.ui.category.enums.ViewType
 
 class ChildAdapter(
     private val childList: List<ChildItem>,
-    private val layoutManager: GridLayoutManager? = null,
-) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val layoutManager: GridLayoutManager? = null
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ViewType.DETAILED.ordinal -> DetailedViewHolder(parent)
-            else -> SimpleViewHolder(parent)
+            ViewType.DETAILED.ordinal -> {
+                val binding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                DetailedViewHolder(binding)
+            }
+            else -> {
+                val binding = ItemGridBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                SimpleViewHolder(binding)
+            }
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = childList[position]
         when (holder) {
             is SimpleViewHolder -> {
-                val item = childList[position]
-                holder.itemView.findViewById<TextView>(R.id.tvCategoryNameGrid).text =
-                    item.title
+                holder.bind(item)
             }
 
             is DetailedViewHolder -> {
-                val item = childList[position]
-                holder.itemView.findViewById<TextView>(R.id.tvCategoryName).text =
-                    item.title
-                holder.itemView.findViewById<TextView>(R.id.tvCategorySubtitleName).text =
-                    item.subtitle
+                holder.bind(item)
             }
         }
     }
@@ -50,20 +47,20 @@ class ChildAdapter(
         else ViewType.SMALL.ordinal
     }
 
-    inner class SimpleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class SimpleViewHolder(private val binding: ItemGridBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        constructor(parent: ViewGroup)
-                : this(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_grid, parent, false)
-        )
+        fun bind(item: ChildItem) {
+            binding.tvCategoryNameGrid.text = item.title
+        }
     }
 
-    inner class DetailedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class DetailedViewHolder(private val binding: ItemListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        constructor(parent: ViewGroup)
-                : this(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
-        )
+        fun bind(item: ChildItem) {
+            binding.tvCategoryName.text = item.title
+            binding.tvCategorySubtitleName.text = item.subtitle
+        }
     }
-
 }

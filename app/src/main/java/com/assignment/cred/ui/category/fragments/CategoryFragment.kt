@@ -1,5 +1,6 @@
 package com.assignment.cred.ui.category.fragments
 
+import ParentAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.assignment.cred.databinding.FragmentCategoryBinding
 import com.assignment.cred.models.ChildItem
 import com.assignment.cred.models.ParentItem
-import com.assignment.cred.ui.category.adapters.ParentAdapter
 import com.assignment.cred.utils.CategoryUiState
 import com.assignment.cred.viewmodels.CategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint

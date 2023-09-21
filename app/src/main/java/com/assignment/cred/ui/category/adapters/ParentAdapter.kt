@@ -1,45 +1,44 @@
-package com.assignment.cred.ui.category.adapters
-
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.assignment.cred.R
+import com.assignment.cred.databinding.ItemParentBinding
 import com.assignment.cred.models.ParentItem
 
 class ParentAdapter(
     private var parentList: List<ParentItem>,
-    private val layoutManager: GridLayoutManager? = null,
-) :
-    RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
+    private val layoutManager: GridLayoutManager? = null
+) : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
 
-    inner class ParentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleTv: TextView = itemView.findViewById(R.id.parentTitleTv)
-        val childRecyclerView: RecyclerView = itemView.findViewById(R.id.langRecyclerView)
+    inner class ParentViewHolder(private val binding: ItemParentBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(parentItem: ParentItem) {
+            binding.parentTitleTv.text = parentItem.title
+
+            var spanCount = if (layoutManager?.spanCount == 3) {
+                4
+            } else {
+                1
+            }
+            binding.langRecyclerView.layoutManager =
+                GridLayoutManager(binding.root.context, spanCount)
+            val adapter = ChildAdapter(
+                parentItem.mList,
+                layoutManager
+            )
+            binding.langRecyclerView.adapter = adapter
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_parent, parent, false)
-        return ParentViewHolder(view)
+        val binding =
+            ItemParentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ParentViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {
         val parentItem = parentList[position]
-        holder.titleTv.text = parentItem.title
-
-        var spanCount = if (layoutManager?.spanCount == 3) {
-            4
-        } else {
-            1
-        }
-        holder.childRecyclerView.layoutManager = GridLayoutManager(holder.itemView.context, spanCount)
-        val adapter = ChildAdapter(
-            parentItem.mList,
-            layoutManager
-        )
-        holder.childRecyclerView.adapter = adapter
+        holder.bind(parentItem)
     }
 
     override fun getItemCount(): Int {
