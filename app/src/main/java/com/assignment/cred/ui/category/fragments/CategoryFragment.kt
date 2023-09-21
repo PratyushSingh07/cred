@@ -1,13 +1,12 @@
 package com.assignment.cred.ui.category.fragments
 
-import ChildAdapter
 import ParentAdapter
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.BundleCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +15,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.Slide
+import androidx.transition.Transition
+import androidx.transition.TransitionManager
 import com.assignment.cred.R
 import com.assignment.cred.databinding.FragmentCategoryBinding
 import com.assignment.cred.models.ChildItem
@@ -24,6 +26,7 @@ import com.assignment.cred.utils.CategoryUiState
 import com.assignment.cred.viewmodels.CategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class CategoryFragment : Fragment() {
@@ -38,6 +41,8 @@ class CategoryFragment : Fragment() {
     private lateinit var parentAdapter: ParentAdapter
     private var mLayoutManager: GridLayoutManager? = null
 
+    private var show = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,9 +56,8 @@ class CategoryFragment : Fragment() {
             parentAdapter = ParentAdapter(parentList, mLayoutManager)
             parentAdapter.onParentItemClick = {
                 val bundle = Bundle()
-                bundle.putParcelable("CHILD_ITEM",it)
-//                val action = CategoryFragmentDirections.actionCategoryFragmentToHomeFragment(it)
-                findNavController().navigate(R.id.action_categoryFragment_to_homeFragment,bundle)
+                bundle.putParcelable("CHILD_ITEM", it)
+                findNavController().navigate(R.id.action_categoryFragment_to_homeFragment, bundle)
             }
             adapter = parentAdapter
         }
@@ -67,6 +71,16 @@ class CategoryFragment : Fragment() {
                 mLayoutManager?.spanCount = 1
             }
             parentAdapter.notifyItemRangeChanged(0, parentAdapter.itemCount)
+        }
+
+        binding.button.setOnClickListener {
+            val transition: Transition = Slide(Gravity.BOTTOM)
+            transition.duration = 600
+            transition.addTarget(binding.rvCategory)
+
+            TransitionManager.beginDelayedTransition(binding.root, transition)
+            binding.rvCategory.visibility = if (show) View.VISIBLE else View.GONE
+            show = !show
         }
 
         return binding.root
