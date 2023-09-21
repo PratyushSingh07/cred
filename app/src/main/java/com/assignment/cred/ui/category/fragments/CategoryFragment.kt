@@ -81,6 +81,12 @@ class CategoryFragment : Fragment() {
             TransitionManager.beginDelayedTransition(binding.root, transition)
             binding.rvCategory.visibility = if (show) View.VISIBLE else View.GONE
             show = !show
+            val drawableRes = if (show) {
+                R.drawable.ic_baseline_keyboard_arrow_up_24
+            } else {
+                R.drawable.ic_baseline_keyboard_arrow_down_24
+            }
+            binding.button.setIconResource(drawableRes)
         }
 
         return binding.root
@@ -94,7 +100,7 @@ class CategoryFragment : Fragment() {
                 categoryViewModel.categoryUiState.collect {
                     when (it) {
                         is CategoryUiState.CategoryList -> {
-                            Log.d("CATEGORY", it.list.toString())
+                            binding.progressBar.visibility = View.GONE
                             val groupedChildItems = it.list.groupBy { categoryItem ->
                                 categoryItem.title
                             }
@@ -111,10 +117,10 @@ class CategoryFragment : Fragment() {
                             parentAdapter.updateData(parentList)
                         }
                         CategoryUiState.Error -> {
-
+                            binding.progressBar.visibility = View.GONE
                         }
                         CategoryUiState.Loading -> {
-
+                            binding.progressBar.visibility = View.VISIBLE
                         }
                     }
                 }

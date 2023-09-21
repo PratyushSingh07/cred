@@ -51,6 +51,7 @@
 
             <Switch
                 android:id="@+id/switch_1"
+                android:trackTint="@color/switch_track_selctor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -61,7 +62,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button"
                 android:layout_width="40sp"
                 android:layout_height="22sp"
@@ -77,6 +78,11 @@
 
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategory"
