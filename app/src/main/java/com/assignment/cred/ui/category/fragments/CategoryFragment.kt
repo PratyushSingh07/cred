@@ -2,7 +2,6 @@ package com.assignment.cred.ui.category.fragments
 
 import ParentAdapter
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +22,7 @@ import com.assignment.cred.databinding.FragmentCategoryBinding
 import com.assignment.cred.models.ChildItem
 import com.assignment.cred.models.ParentItem
 import com.assignment.cred.utils.CategoryUiState
-import com.assignment.cred.viewmodels.CategoryViewModel
+import com.assignment.cred.ui.category.viewmodels.CategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

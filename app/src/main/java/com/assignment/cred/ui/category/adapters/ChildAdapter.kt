@@ -17,11 +17,13 @@ class ChildAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ViewType.DETAILED.ordinal -> {
-                val binding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding =
+                    ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 DetailedViewHolder(binding)
             }
             else -> {
-                val binding = ItemGridBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding =
+                    ItemGridBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 SimpleViewHolder(binding)
             }
         }
