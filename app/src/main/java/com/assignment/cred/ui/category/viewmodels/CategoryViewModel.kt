@@ -1,4 +1,4 @@
-package com.assignment.cred.viewmodels
+package com.assignment.cred.ui.category.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

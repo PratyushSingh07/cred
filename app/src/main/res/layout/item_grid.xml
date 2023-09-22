@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:id="@+id/cvGrid"
+    android:background="#0D0D0D"
+    android:layout_margin="5sp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivCategoryName"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/mint_placeholder" />
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16sp"
+        android:textColor="@color/white"
+        android:id="@+id/tvCategoryNameGrid"
+        android:layout_below="@id/ivCategoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/mint"
+        android:minLines="2"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

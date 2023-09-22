@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
-    tools:context=".ui.category.CategoryFragment">
+    android:background="#0D0D0D"
+    tools:context=".ui.category.fragments.CategoryFragment">
 
     <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_marginTop="30sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -20,12 +23,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/teal_200"
-                android:textSize="20sp"
-                android:text="explore"/>
+                android:textColor="#3D3D3D"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/explore"/>
 
         </LinearLayout>
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:layout_below="@id/llExplore"
@@ -36,31 +41,52 @@
                 android:id="@+id/tvCred"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/cred"
                 android:textColor="@color/white"
-                android:fontFamily="@font/dmserifdisplay_regular"
+                android:textSize="26sp"
                 android:textStyle="bold"
-                android:textSize="40sp"
-                android:text="CRED"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <Switch
-                android:layout_marginLeft="20dp"
                 android:id="@+id/switch_1"
-                android:layout_toRightOf="@id/tvCred"
-                android:layout_centerVertical="true"
+                android:trackTint="@color/switch_track_selctor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/border_switch"
                 android:thumb="@drawable/custom_switch"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button"
+                android:layout_width="40sp"
+                android:layout_height="22sp"
+                app:backgroundTint="@null"
+                app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
+                app:iconTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategory"
+        android:layout_below="@id/rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#0D0D0D"
     tools:context=".ui.home.HomeFragment">
 
     <ImageView
@@ -19,7 +20,7 @@
 
     <LinearLayout
         android:id="@+id/llText"
-        android:layout_margin="30dp"
+        android:layout_margin="20dp"
         android:layout_below="@id/ivCategory"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -30,9 +31,9 @@
             android:id="@+id/tvCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Placeholder Category"
+            android:text="@string/placeholder_category"
             android:textColor="@color/white"
-            android:fontFamily="@font/dmserifdisplay_regular"
+            android:fontFamily="@font/poppins_bold"
             android:textStyle="bold"
             android:textSize="30sp"/>
 
@@ -40,10 +41,10 @@
             android:id="@+id/tvCategorySubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grow Savings 3x faster"
+            android:text="@string/placeholder_subtitle"
             android:textColor="@color/white"
             android:fontFamily="@font/dmserifdisplay_regular"
-            android:textSize="20sp"/>
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
@@ -57,9 +58,13 @@
             android:id="@+id/btnCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Go to Category"
+            android:text="@string/go_to_category"
+            app:iconGravity="textEnd"
+            android:textAllCaps="false"
             android:padding="16dp"
-            android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+            android:fontFamily="@font/poppins_medium"
+            app:icon="@drawable/ic_baseline_arrow_forward_24"
+            app:iconTint="@color/black"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"/>
 
